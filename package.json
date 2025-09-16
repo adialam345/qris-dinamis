@@ -1,0 +1,24 @@
+{
+  "name": "qris-dinamis",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "nuxt": "^3.13.0",
+    "qrcode": "^1.5.3",
+    "qrcode-reader": "^1.0.4",
+    "vue": "^3.5.21",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "tailwindcss": "^3.4.0"
+  }
+}
