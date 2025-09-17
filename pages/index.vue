@@ -3,28 +3,28 @@
     <div class="container mx-auto px-4 py-4">
       <!-- Header -->
       <div class="text-center mb-6">
-        <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-3">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-3">
+          <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
           </svg>
         </div>
-        <h1 class="text-2xl font-bold text-gray-900 mb-1">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
           QRIS Dinamis
         </h1>
-        <p class="text-sm text-gray-600">
+        <p class="text-sm md:text-base text-gray-600">
           Upload QRIS → Auto extract → Masukkan nominal
         </p>
       </div>
 
       <!-- Progress Steps -->
-      <div class="flex items-center justify-center space-x-6 mb-6">
+      <div class="flex items-center justify-center space-x-4 md:space-x-8 mb-6">
         <!-- Step 1: Upload -->
         <div class="flex items-center">
           <div :class="[
-            'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold',
+            'w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-xs md:text-sm font-semibold',
             qrisTemplate ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-600'
           ]">
-            <svg v-if="qrisTemplate" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-if="qrisTemplate" class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span v-else>1</span>
@@ -32,18 +32,18 @@
         </div>
 
         <!-- Arrow -->
-        <div class="w-6 h-0.5 bg-gray-300"></div>
+        <div class="w-6 md:w-8 h-0.5 bg-gray-300"></div>
 
         <!-- Step 2: Extract -->
         <div class="flex items-center">
           <div :class="[
-            'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold',
+            'w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-xs md:text-sm font-semibold',
             merchantInfo ? 'bg-green-500 text-white' : (qrisTemplate ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600')
           ]">
-            <svg v-if="merchantInfo" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-if="merchantInfo" class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            <svg v-else-if="qrisTemplate && isExtracting" class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-else-if="qrisTemplate && isExtracting" class="w-4 h-4 md:w-5 md:h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
             </svg>
             <span v-else>2</span>
@@ -51,12 +51,12 @@
         </div>
 
         <!-- Arrow -->
-        <div class="w-6 h-0.5 bg-gray-300"></div>
+        <div class="w-6 md:w-8 h-0.5 bg-gray-300"></div>
 
         <!-- Step 3: Generate -->
         <div class="flex items-center">
           <div :class="[
-            'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold',
+            'w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-xs md:text-sm font-semibold',
             merchantInfo ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'
           ]">
             <span>3</span>
@@ -65,17 +65,17 @@
       </div>
 
       <!-- Main Content -->
-      <div class="max-w-md mx-auto">
+      <div class="max-w-md md:max-w-lg lg:max-w-2xl mx-auto">
         <!-- Upload Section -->
-        <div v-if="!qrisTemplate" class="bg-white rounded-xl shadow-lg p-6 mb-4">
+        <div v-if="!qrisTemplate" class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-4">
           <div class="text-center">
-            <div class="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="mx-auto w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Upload QRIS Statis</h3>
-            <p class="text-sm text-gray-600 mb-4">PNG, JPG atau file data QR</p>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Upload QRIS Statis</h3>
+            <p class="text-sm md:text-base text-gray-600 mb-4">PNG, JPG atau file data QR</p>
             <input
               ref="fileInput"
               type="file"
@@ -85,7 +85,7 @@
             />
             <button
               @click="$refs.fileInput.click()"
-              class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-sm md:text-base font-medium transition-colors"
             >
               Pilih File
             </button>
@@ -93,21 +93,21 @@
         </div>
 
         <!-- Template Info -->
-        <div v-else class="bg-white rounded-xl shadow-lg p-4 mb-4">
+        <div v-else class="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center">
-              <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
               </div>
               <div>
-                <p class="font-medium text-gray-900 text-sm">{{ qrisTemplate.name }}</p>
-                <div v-if="merchantInfo" class="text-xs text-green-600">
+                <p class="font-medium text-gray-900 text-sm md:text-base">{{ qrisTemplate.name }}</p>
+                <div v-if="merchantInfo" class="text-xs md:text-sm text-green-600">
                   ✓ {{ getCategoryName(merchantInfo.category) }}
                 </div>
-                <div v-else-if="isExtracting" class="text-xs text-blue-600">
-                  <svg class="w-3 h-3 inline mr-1 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div v-else-if="isExtracting" class="text-xs md:text-sm text-blue-600">
+                  <svg class="w-3 h-3 md:w-4 md:h-4 inline mr-1 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                   </svg>
                   Extracting...
@@ -116,7 +116,7 @@
             </div>
             <button
               @click="removeTemplate"
-              class="text-red-500 hover:text-red-700 text-sm"
+              class="text-red-500 hover:text-red-700 text-sm md:text-base"
             >
               Hapus
             </button>
@@ -124,8 +124,8 @@
         </div>
 
         <!-- Generate Form -->
-        <div v-if="qrisTemplate && merchantInfo" class="bg-white rounded-xl shadow-lg p-4 mb-4">
-          <h3 class="text-lg font-semibold text-gray-900 mb-4">Masukkan Nominal</h3>
+        <div v-if="qrisTemplate && merchantInfo" class="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-4">
+          <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-4">Masukkan Nominal</h3>
           
           <!-- Amount Input -->
           <div class="mb-4">
@@ -137,19 +137,19 @@
                 v-model="qrForm.amount"
                 type="text"
                 placeholder="0"
-                class="w-full pl-10 pr-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                class="w-full pl-10 pr-4 py-3 md:py-4 text-lg md:text-xl border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                 @input="formatAmount"
               />
             </div>
             
             <!-- Quick Amount Buttons -->
             <div class="mt-3">
-              <div class="grid grid-cols-3 gap-2">
+              <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
                 <button
                   v-for="amount in [25000, 50000, 100000, 200000, 500000, 1000000]"
                   :key="amount"
                   @click="setQuickAmount(amount)"
-                  class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 py-2 rounded text-xs font-medium transition-colors"
+                  class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 py-2 rounded text-xs md:text-sm font-medium transition-colors"
                 >
                   {{ formatNumber(amount) }}
                 </button>
@@ -163,7 +163,7 @@
               v-model="qrForm.description"
               type="text"
               placeholder="Keterangan (opsional)"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm"
+              class="w-full px-3 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm md:text-base"
             />
           </div>
           
@@ -171,9 +171,9 @@
           <button
             @click="generateQR"
             :disabled="!qrForm.amount || isGenerating"
-            class="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center"
+            class="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white py-3 md:py-4 rounded-lg font-medium transition-colors flex items-center justify-center text-sm md:text-base"
           >
-            <svg v-if="isGenerating" class="w-4 h-4 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-if="isGenerating" class="w-4 h-4 md:w-5 md:h-5 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
             </svg>
             {{ isGenerating ? 'Generating...' : 'Generate QRIS' }}
@@ -181,50 +181,50 @@
         </div>
 
         <!-- Waiting State -->
-        <div v-else-if="qrisTemplate && !merchantInfo" class="bg-white rounded-xl shadow-lg p-6 mb-4 text-center">
-          <div class="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
-            <svg class="w-6 h-6 text-blue-500 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div v-else-if="qrisTemplate && !merchantInfo" class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-4 text-center">
+          <div class="mx-auto w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-500 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
             </svg>
           </div>
-          <p class="text-gray-600 text-sm">Mengekstrak data QRIS...</p>
+          <p class="text-gray-600 text-sm md:text-base">Mengekstrak data QRIS...</p>
         </div>
 
         <!-- QR History -->
-        <div v-if="qrHistory.length > 0" class="bg-white rounded-xl shadow-lg p-4">
+        <div v-if="qrHistory.length > 0" class="bg-white rounded-xl shadow-lg p-4 md:p-6">
           <div class="flex justify-between items-center mb-3">
-            <h3 class="text-lg font-semibold text-gray-900">History ({{ qrHistory.length }})</h3>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900">History ({{ qrHistory.length }})</h3>
             <button
               @click="clearHistory"
-              class="text-red-500 hover:text-red-700 text-sm"
+              class="text-red-500 hover:text-red-700 text-sm md:text-base"
             >
               Clear All
             </button>
           </div>
           
-          <div class="space-y-2 max-h-40 overflow-y-auto">
-            <div v-for="qr in qrHistory.slice().reverse().slice(0, 3)" :key="qr.id" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+          <div class="space-y-2 max-h-40 md:max-h-60 overflow-y-auto">
+            <div v-for="qr in qrHistory.slice().reverse().slice(0, 3)" :key="qr.id" class="flex items-center justify-between p-3 md:p-4 bg-gray-50 rounded-lg">
               <div class="flex items-center">
-                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                  <svg class="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
                   </svg>
                 </div>
                 <div>
-                  <p class="font-medium text-gray-900 text-sm">Rp {{ formatNumber(qr.amount) }}</p>
-                  <p class="text-xs text-gray-500">{{ formatDate(qr.createdAt) }}</p>
+                  <p class="font-medium text-gray-900 text-sm md:text-base">Rp {{ formatNumber(qr.amount) }}</p>
+                  <p class="text-xs md:text-sm text-gray-500">{{ formatDate(qr.createdAt) }}</p>
                 </div>
               </div>
-              <div class="flex space-x-1">
+              <div class="flex space-x-1 md:space-x-2">
                 <button
                   @click="viewQR(qr)"
-                  class="bg-blue-500 hover:bg-blue-600 text-white text-xs px-2 py-1 rounded transition-colors"
+                  class="bg-blue-500 hover:bg-blue-600 text-white text-xs md:text-sm px-2 md:px-3 py-1 md:py-2 rounded transition-colors"
                 >
                   Lihat
                 </button>
                 <button
                   @click="downloadQR(qr)"
-                  class="bg-green-500 hover:bg-green-600 text-white text-xs px-2 py-1 rounded transition-colors"
+                  class="bg-green-500 hover:bg-green-600 text-white text-xs md:text-sm px-2 md:px-3 py-1 md:py-2 rounded transition-colors"
                 >
                   Download
                 </button>
@@ -237,24 +237,24 @@
 
     <!-- QR Preview Modal -->
     <div v-if="showQRModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fadeIn">
-      <div class="bg-white rounded-xl shadow-xl max-w-sm w-full animate-slideUp">
-        <div class="flex justify-between items-center p-4 border-b">
-          <h3 class="text-lg font-semibold text-gray-900">Preview QRIS</h3>
+      <div class="bg-white rounded-xl shadow-xl max-w-sm md:max-w-md w-full animate-slideUp">
+        <div class="flex justify-between items-center p-4 md:p-6 border-b">
+          <h3 class="text-lg md:text-xl font-semibold text-gray-900">Preview QRIS</h3>
           <button @click="showQRModal = false" class="text-gray-400 hover:text-gray-600">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
         </div>
         
-        <div class="p-4">
+        <div class="p-4 md:p-6">
           <div v-if="selectedQR" class="text-center">
-            <div class="bg-white border border-gray-200 rounded-lg p-3 mb-4 inline-block">
+            <div class="bg-white border border-gray-200 rounded-lg p-3 md:p-4 mb-4 inline-block">
               <canvas ref="qrCanvas" class="mx-auto"></canvas>
             </div>
             
-            <div class="bg-gray-50 rounded-lg p-3 text-left mb-4">
-              <div class="space-y-1 text-sm">
+            <div class="bg-gray-50 rounded-lg p-3 md:p-4 text-left mb-4">
+              <div class="space-y-1 text-sm md:text-base">
                 <div class="flex justify-between">
                   <span class="text-gray-600">Nominal:</span>
                   <span class="font-semibold text-green-600">Rp {{ formatNumber(selectedQR.amount) }}</span>
@@ -270,16 +270,16 @@
               </div>
             </div>
             
-            <div class="flex space-x-2">
+            <div class="flex space-x-2 md:space-x-3">
               <button
                 @click="downloadCurrentQR"
-                class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-3 md:px-4 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors"
               >
                 Download
               </button>
               <button
                 @click="showQRModal = false"
-                class="flex-1 bg-gray-500 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                class="flex-1 bg-gray-500 hover:bg-gray-600 text-white px-3 md:px-4 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors"
               >
                 Tutup
               </button>
@@ -627,14 +627,7 @@ const generateQR = async () => {
       if (qrCanvas.value) {
         try {
           import('qrcode').then(QRCode => {
-            QRCode.toCanvas(qrCanvas.value, qrData.qrData, {
-              width: 200,
-              margin: 2,
-              color: {
-                dark: '#000000',
-                light: '#FFFFFF'
-              }
-            })
+            generateQRWithLogo(qrCanvas.value, qrData.qrData)
           })
         } catch (error) {
           console.error('Error generating QR:', error)
@@ -723,15 +716,7 @@ const viewQR = async (qr) => {
   await nextTick()
   if (qrCanvas.value) {
     try {
-      const QRCode = await import('qrcode')
-      await QRCode.toCanvas(qrCanvas.value, qr.qrData, {
-        width: 250,
-        margin: 2,
-        color: {
-          dark: '#000000',
-          light: '#FFFFFF'
-        }
-      })
+      generateQRWithLogo(qrCanvas.value, qr.qrData)
     } catch (error) {
       console.error('Error generating QR:', error)
       showNotification('Error generating QR code', 'error')
@@ -741,16 +726,8 @@ const viewQR = async (qr) => {
 
 const downloadQR = async (qr) => {
   try {
-    const QRCode = await import('qrcode')
     const canvas = document.createElement('canvas')
-    await QRCode.toCanvas(canvas, qr.qrData, {
-      width: 400,
-      margin: 2,
-      color: {
-        dark: '#000000',
-        light: '#FFFFFF'
-      }
-    })
+    await generateQRWithLogo(canvas, qr.qrData, 400)
     const link = document.createElement('a')
     link.download = `QRIS_${qr.amount}_${new Date(qr.createdAt).toISOString().split('T')[0]}.png`
     link.href = canvas.toDataURL()
@@ -765,6 +742,67 @@ const downloadQR = async (qr) => {
 const downloadCurrentQR = () => {
   if (selectedQR.value) {
     downloadQR(selectedQR.value)
+  }
+}
+
+const generateQRWithLogo = async (canvas, qrData, size = 200) => {
+  try {
+    const QRCode = await import('qrcode')
+    
+    // Generate QR code
+    await QRCode.toCanvas(canvas, qrData, {
+      width: size,
+      margin: 2,
+      color: {
+        dark: '#000000',
+        light: '#FFFFFF'
+      }
+    })
+    
+    // Get canvas context
+    const ctx = canvas.getContext('2d')
+    
+    // Calculate center position
+    const centerX = canvas.width / 2
+    const centerY = canvas.height / 2
+    
+    // Create white background circle for logo
+    const logoSize = size * 0.2 // 20% of QR size
+    const logoRadius = logoSize / 2
+    
+    // Draw white circle background
+    ctx.fillStyle = '#FFFFFF'
+    ctx.beginPath()
+    ctx.arc(centerX, centerY, logoRadius, 0, 2 * Math.PI)
+    ctx.fill()
+    
+    // Draw border circle
+    ctx.strokeStyle = '#E5E7EB'
+    ctx.lineWidth = 2
+    ctx.stroke()
+    
+    // Add "QRISIN" text
+    ctx.fillStyle = '#1F2937'
+    ctx.font = `bold ${logoSize * 0.12}px Arial, sans-serif`
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    
+    // Split text into two lines if needed
+    const text = 'QRISIN'
+    const textWidth = ctx.measureText(text).width
+    
+    if (textWidth > logoSize * 0.8) {
+      // Split into two lines
+      ctx.font = `bold ${logoSize * 0.1}px Arial, sans-serif`
+      ctx.fillText('QRIS', centerX, centerY - logoSize * 0.05)
+      ctx.fillText('IN', centerX, centerY + logoSize * 0.05)
+    } else {
+      ctx.fillText(text, centerX, centerY)
+    }
+    
+  } catch (error) {
+    console.error('Error generating QR with logo:', error)
+    throw error
   }
 }
 
