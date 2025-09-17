@@ -1,21 +1,15 @@
-# QRIS Dinamis
+# QRIS Dinamis Generator
 
-Aplikasi web untuk generate QRIS dinamis menggunakan Nuxt.js + Vue.js yang di-load dari CDN tanpa perlu npm install.
+Aplikasi web sederhana untuk generate QRIS dinamis dari template QRIS statis menggunakan Nuxt.js + Vue.js.
 
 ## 🚀 Fitur Utama
 
-### Admin
-- ✅ Login & Logout
-- ✅ CRUD Store (Create, Read, Update, Delete)
-- ✅ Dashboard dengan statistik
-- ✅ Kelola data store
-
-### Store
-- ✅ Login & Logout
 - ✅ Upload QRIS statis (template)
+- ✅ Extract data merchant dari QRIS statis
 - ✅ Generate QRIS dinamis dengan nominal
 - ✅ History QR yang pernah di-generate
 - ✅ Download QR Code
+- ✅ Preview QR dengan detail informasi
 
 ## 🛠️ Teknologi
 
@@ -31,16 +25,8 @@ Aplikasi web untuk generate QRIS dinamis menggunakan Nuxt.js + Vue.js yang di-lo
 qris-dinamis/
 ├── app.vue                 # Main app component
 ├── nuxt.config.ts         # Nuxt configuration
-├── components/
-│   ├── Navbar.vue         # Navigation component
-│   └── Notification.vue   # Notification component
 ├── pages/
-│   ├── index.vue          # Landing page
-│   ├── login.vue          # Login page
-│   ├── admin/
-│   │   └── dashboard.vue  # Admin dashboard
-│   └── store/
-│       └── dashboard.vue  # Store dashboard
+│   └── index.vue          # Main page dengan semua fitur
 └── public/
     └── favicon.ico
 ```
@@ -61,33 +47,18 @@ npm run preview
 ### Opsi 3: Serve Static Files
 Setelah build, file di folder `dist/` dapat di-serve dengan web server apapun.
 
-## 👤 Demo Credentials
+## 🎯 Cara Penggunaan
 
-### Admin
-- **Email**: admin@qris.com
-- **Password**: admin123
-- **Fitur**: Kelola store, lihat statistik
+1. **Upload Template QRIS** - Upload gambar QRIS statis atau file text QRIS
+2. **Extract Data** - Klik "Extract Data" untuk mengekstrak Merchant ID dan info lain
+3. **Generate QR Dinamis** - Masukkan nominal dan keterangan, lalu generate QR
+4. **Download/Preview** - Lihat atau download QR yang sudah dibuat
 
-### Store
-- **Email**: store@qris.com
-- **Password**: store123
-- **Fitur**: Upload template, generate QR, lihat history
+## 🔧 Format yang Didukung
 
-## 📱 Cara Penggunaan
-
-### Untuk Admin:
-1. Login dengan kredensial admin
-2. Dashboard menampilkan statistik store
-3. Klik "Tambah Store" untuk menambah store baru
-4. Edit atau hapus store yang sudah ada
-
-### Untuk Store:
-1. Login dengan kredensial store
-2. Upload template QRIS statis (PNG/JPG)
-3. Masukkan nominal dan keterangan
-4. Klik "Generate QR" untuk membuat QR dinamis
-5. Lihat history QR yang sudah dibuat
-6. Download QR Code yang diinginkan
+- **Gambar QR**: PNG, JPG dengan QR code
+- **File Text**: File .txt berisi data QRIS
+- **Format EMV**: Standar QRIS Indonesia
 
 ## 🔧 Konfigurasi CDN
 
@@ -101,10 +72,9 @@ Semua library sudah dikonfigurasi untuk menggunakan CDN:
 ## 💾 Data Storage
 
 Aplikasi menggunakan localStorage untuk menyimpan:
-- Data user yang login
-- Data store (admin)
-- Template QRIS (store)
-- History QR generated (store)
+- Template QRIS yang di-upload
+- History QR yang di-generate
+- Data merchant yang diekstrak
 
 ## 🎨 UI/UX Features
 
@@ -116,20 +86,20 @@ Aplikasi menggunakan localStorage untuk menyimpan:
 - ✅ Form validation
 - ✅ File upload dengan preview
 
-## 🔒 Security Features
+## 🔒 Features
 
-- ✅ Route protection (redirect ke login jika belum auth)
-- ✅ Role-based access (admin vs store)
-- ✅ Session management dengan localStorage
+- ✅ Format QRIS standar EMV
+- ✅ CRC16 checksum yang benar
+- ✅ Template-based generation
+- ✅ Real-time preview
 
 ## 📊 Fitur Tambahan
 
-- ✅ Statistik dashboard
 - ✅ Export/Download QR Code
 - ✅ File upload dengan drag & drop
 - ✅ Real-time notifications
-- ✅ Responsive tables
-- ✅ Search dan filter (dapat dikembangkan)
+- ✅ Responsive design
+- ✅ History tracking
 
 ## 🚀 Deployment
 
@@ -141,10 +111,10 @@ Aplikasi dapat di-deploy ke:
 
 ## 📝 Catatan
 
-- Aplikasi ini menggunakan CDN untuk semua dependencies
-- Tidak perlu npm install untuk menjalankan
+- Aplikasi sederhana tanpa login/authentication
 - Data disimpan di localStorage browser
 - UI sudah responsive dan mobile-friendly
+- Menggunakan algoritma CRC16 yang benar untuk QRIS
 - Semua fitur sudah siap pakai
 
 ## 🤝 Kontribusi
