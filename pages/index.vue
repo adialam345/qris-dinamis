@@ -290,23 +290,79 @@
     </div>
 
     <!-- Notification -->
-    <div v-if="notification.show" class="fixed top-4 right-4 z-50">
-      <div 
-        :class="[
-          'px-4 py-3 rounded-lg shadow-lg max-w-sm',
-          notification.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-        ]"
-      >
-        <div class="flex items-center justify-between">
-          <span class="text-sm font-medium">{{ notification.message }}</span>
-          <button 
-            @click="notification.show = false"
-            class="ml-3 text-white hover:text-gray-200"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    <div v-if="notification.show" class="fixed top-4 right-4 z-50 max-w-sm w-full">
+      <div :class="[
+        'p-4 rounded-xl shadow-2xl border backdrop-blur-sm transition-all duration-500 ease-out transform',
+        'animate-slide-in-right',
+        notification.type === 'success' ? 'bg-green-50/95 border-green-200 text-green-800 shadow-green-100' :
+        notification.type === 'error' ? 'bg-red-50/95 border-red-200 text-red-800 shadow-red-100' :
+        notification.type === 'warning' ? 'bg-yellow-50/95 border-yellow-200 text-yellow-800 shadow-yellow-100' :
+        'bg-blue-50/95 border-blue-200 text-blue-800 shadow-blue-100'
+      ]">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <div :class="[
+              'w-8 h-8 rounded-full flex items-center justify-center',
+              notification.type === 'success' ? 'bg-green-100' :
+              notification.type === 'error' ? 'bg-red-100' :
+              notification.type === 'warning' ? 'bg-yellow-100' :
+              'bg-blue-100'
+            ]">
+              <svg v-if="notification.type === 'success'" class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <svg v-else-if="notification.type === 'error'" class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+              </svg>
+              <svg v-else-if="notification.type === 'warning'" class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+              </svg>
+              <svg v-else class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="ml-3 flex-1">
+            <p class="text-sm font-semibold">{{ notification.message }}</p>
+          </div>
+          <button @click="notification.show = false" class="ml-4 flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors duration-200 p-1 rounded-full hover:bg-gray-100">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div v-if="showConfirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white rounded-xl shadow-2xl max-w-md w-full animate-slideUp">
+        <div class="p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900">Konfirmasi</h3>
+          </div>
+          
+          <p class="text-gray-600 mb-6">{{ confirmMessage }}</p>
+          
+          <div class="flex space-x-3">
+            <button
+              @click="confirmAction"
+              class="flex-1 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              Ya, Hapus
+            </button>
+            <button
+              @click="cancelAction"
+              class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              Batal
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -330,6 +386,12 @@ const fileInput = ref(null)
 const qrCanvas = ref(null)
 const isExtracting = ref(false)
 const isGenerating = ref(false)
+
+// Confirmation modal state
+const showConfirmModal = ref(false)
+const confirmMessage = ref('')
+const confirmCallback = ref(null)
+
 const notification = ref({
   show: false,
   message: '',
@@ -345,7 +407,27 @@ const showNotification = (message, type = 'success') => {
   }
   setTimeout(() => {
     notification.value.show = false
-  }, 3000)
+  }, 4000) // Increased duration for better UX
+}
+
+// Confirmation modal methods
+const showConfirm = (message, callback) => {
+  confirmMessage.value = message
+  confirmCallback.value = callback
+  showConfirmModal.value = true
+}
+
+const confirmAction = () => {
+  if (confirmCallback.value) {
+    confirmCallback.value()
+  }
+  showConfirmModal.value = false
+  confirmCallback.value = null
+}
+
+const cancelAction = () => {
+  showConfirmModal.value = false
+  confirmCallback.value = null
 }
 
 const handleFileUpload = async (event) => {
@@ -701,12 +783,15 @@ const viewTemplate = () => {
 }
 
 const removeTemplate = () => {
-  if (confirm('Apakah Anda yakin ingin menghapus template QRIS?')) {
-    qrisTemplate.value = null
-    merchantInfo.value = null
-    localStorage.removeItem('qrisTemplate')
-    showNotification('Template QRIS berhasil dihapus', 'success')
-  }
+  showConfirm(
+    'Apakah Anda yakin ingin menghapus template QRIS? Tindakan ini tidak dapat dibatalkan.',
+    () => {
+      qrisTemplate.value = null
+      merchantInfo.value = null
+      localStorage.removeItem('qrisTemplate')
+      showNotification('Template QRIS berhasil dihapus', 'success')
+    }
+  )
 }
 
 const viewQR = async (qr) => {
@@ -766,42 +851,34 @@ const generateQRWithLogo = async (canvas, qrData, size = 200) => {
     const centerX = canvas.width / 2
     const centerY = canvas.height / 2
     
-    // Create white background rectangle for logo - balanced size for scanning and visibility
-    const logoWidth = size * 0.35 // 35% of QR size width (slightly wider, still safe)
-    const logoHeight = size * 0.15 // 15% of QR size height (keep height same)
+    // Create integrated logo area - balanced size for scanning and visibility
+    const logoWidth = size * 0.4 // 40% of QR size width (slightly wider for better integration)
+    const logoHeight = size * 0.18 // 18% of QR size height (slightly taller for better text)
     const logoX = centerX - logoWidth / 2
     const logoY = centerY - logoHeight / 2
     
-    // Draw white rectangle background with more elegant rounded corners
+    // Create a white background area for the logo text
     ctx.fillStyle = '#FFFFFF'
-    const cornerRadius = 8 // More rounded for elegance
     ctx.beginPath()
-    ctx.roundRect(logoX, logoY, logoWidth, logoHeight, cornerRadius)
+    ctx.roundRect(logoX, logoY, logoWidth, logoHeight, 4)
     ctx.fill()
     
-    // Draw elegant border with subtle shadow effect
-    ctx.strokeStyle = '#D1D5DB'
-    ctx.lineWidth = 1.5
-    ctx.stroke()
-    
-    // Add subtle inner shadow for depth
+    // Add subtle border for definition
     ctx.strokeStyle = '#F3F4F6'
     ctx.lineWidth = 1
-    ctx.beginPath()
-    ctx.roundRect(logoX + 1, logoY + 1, logoWidth - 2, logoHeight - 2, cornerRadius - 1)
     ctx.stroke()
     
-    // Add "QRISIN" text with elegant styling - optimized for smaller logo
+    // Add "QRISIN" text with elegant, integrated styling
     ctx.fillStyle = '#1F2937'
-    ctx.font = `bold ${logoHeight * 0.7}px 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif`
+    ctx.font = `700 ${logoHeight * 0.6}px 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     
-    // Add subtle text shadow for elegance
+    // Add subtle text shadow for depth and readability
     ctx.shadowColor = 'rgba(0, 0, 0, 0.1)'
     ctx.shadowBlur = 1
-    ctx.shadowOffsetX = 0.5
-    ctx.shadowOffsetY = 0.5
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 1
     
     // Always display as single line
     ctx.fillText('QRISIN', centerX, centerY)
@@ -859,11 +936,14 @@ const clearForm = () => {
 }
 
 const clearHistory = () => {
-  if (confirm('Apakah Anda yakin ingin menghapus semua history QR?')) {
-    qrHistory.value = []
-    localStorage.removeItem('qrHistory')
-    showNotification('History QR berhasil dihapus', 'success')
-  }
+  showConfirm(
+    `Apakah Anda yakin ingin menghapus semua history QR? (${qrHistory.value.length} item akan dihapus)`,
+    () => {
+      qrHistory.value = []
+      localStorage.removeItem('qrHistory')
+      showNotification('History QR berhasil dihapus', 'success')
+    }
+  )
 }
 
 const getCategoryName = (categoryCode) => {
@@ -1014,6 +1094,21 @@ onMounted(() => {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s ease-out;
 }
 
 .animate-fadeIn {
